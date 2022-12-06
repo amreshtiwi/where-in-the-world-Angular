@@ -1,0 +1,37 @@
+.header{
+    background-color: #ffffff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 0 5px -2px #858585;
+    padding-left: 5%;
+    padding-right: 5%;
+    height: 80px;
+}
+.title{
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.dark-mode-btn{
+    border: none;
+    background: none;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 0;
+}
+
+@media only screen and (min-width: 740px){
+    .title{
+        font-size: 24px;
+        font-weight: 800;
+    }
+
+    .dark-mode-btn{
+        font-size: 16px;
+    }
+}

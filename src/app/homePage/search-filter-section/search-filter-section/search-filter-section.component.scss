@@ -1,0 +1,13 @@
+.search-section{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: 140px;
+    align-content: space-between;
+}
+
+@media only screen and (min-width: 740px) {
+    .search-section{
+        height: auto;
+    }
+}
