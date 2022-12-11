@@ -1,0 +1,9 @@
+<div [class]="'grid'">
+    <app-countries-cards *ngFor="let country of countries$ | async" 
+    [flag]="country.flags.svg"
+    [commonName]="country.name.common"
+    [population]="country.population.toLocaleString()"
+    [region]="country.region"
+    [capital]="country.capital ? country.capital.join() : 'No capital'"
+    ></app-countries-cards>
+</div>

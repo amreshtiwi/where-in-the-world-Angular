@@ -1,0 +1,18 @@
+.grid{
+    display: grid;
+    grid-template-columns: auto;
+    grid-gap: 70px;
+    margin-top: 50px;
+}
+
+@media only screen and (min-width: 740px) {
+    .grid{
+        grid-template-columns: auto auto;
+    }
+}
+
+@media only screen and (min-width: 1200px){
+    .grid{
+        grid-template-columns: auto auto auto auto;
+    }
+}
