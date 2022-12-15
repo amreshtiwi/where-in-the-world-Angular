@@ -1,3 +1,4 @@
+import { CountrySectionComponent } from './homePage/country-section/country-section/country-section.component';
 import { HomepageComponent } from './homePage/homepage/homepage.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -7,10 +8,21 @@ const routes: Routes = [
   {
     path: '',
     component: HomepageComponent,
+    children:[
+      {
+        path: '',
+        component: CountrySectionComponent,
+      }
+    ],
   },
   {
-    path: 'details',
+    path: 'details/:cca2',
     component: DetailspageComponent
+  },
+  {
+    path: 'home',
+    redirectTo: '/',
+    pathMatch: 'full'
   }
 ];
 

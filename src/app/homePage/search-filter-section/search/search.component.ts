@@ -1,3 +1,4 @@
+import { CountriesService } from './../../service/countries.service';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Component } from '@angular/core';
 
@@ -7,5 +8,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./search.component.scss']
 })
 export class SearchComponent {
+  searchValue:string=this.countriesService.searchValue.value;
   searchIcon=faSearch;
+  constructor(private countriesService:CountriesService){
+
+  }
+
+  handleSearch(){
+    this.countriesService.searchValue.next(this.searchValue);
+  }
 }

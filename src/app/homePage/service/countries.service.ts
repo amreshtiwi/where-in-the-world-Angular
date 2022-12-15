@@ -1,17 +1,23 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http'
+import {HttpClient} from '@angular/common/http';
+import { BehaviorSubject, Observable ,switchMap} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CountriesService {
 
+  searchValue = new BehaviorSubject('');
+
+  countries$ = this.searchValue.pipe(
+    switchMap((searchValue)=>{
+      let api = "https://restcountries.com/v3.1/" + (searchValue.trim() ? "name/" + searchValue : "all");
+     return this.httpClient.get<Country[]>(api);
+    })
+  );
+
   constructor(private httpClient:HttpClient) {
 
-   }
-
-   getAllCountries(){
-    return this.httpClient.get<Country[]>('https://restcountries.com/v3.1/all');
    }
 }
 

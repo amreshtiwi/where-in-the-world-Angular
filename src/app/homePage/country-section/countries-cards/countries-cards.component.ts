@@ -10,5 +10,6 @@ export class CountriesCardsComponent {
   @Input() commonName?:string;
   @Input() population?:string;
   @Input() region?:string;
-  @Input() capital?:string
+  @Input() capital?:string;
+  @Input() cca2?:string;
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-detailspage',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./detailspage.component.scss']
 })
 export class DetailspageComponent {
-
+  countryCode?:string='test';
+  constructor(route: ActivatedRoute) {
+    route.params.subscribe(params => this.countryCode=params['cca2']);
+}
 }

@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CountrySectionComponent } from './country-section/country-section.component';
@@ -18,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule,
   ]
 })
 export class CountrySectionModule { }

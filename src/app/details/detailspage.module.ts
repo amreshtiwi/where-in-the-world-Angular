@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { DetailspageComponent } from './detailspage/detailspage.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -10,7 +11,8 @@ import { CommonModule } from '@angular/common';
     DetailspageComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ]
 })
 export class DetailspageModule { }

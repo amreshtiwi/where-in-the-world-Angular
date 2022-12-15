@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 })
 export class CountrySectionComponent {
 
-  countries$ = this.countriesServies.getAllCountries();
+  countries$ = this.countriesServies.countries$;
 
   constructor(private countriesServies: CountriesService){
   }

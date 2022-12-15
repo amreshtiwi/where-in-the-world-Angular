@@ -1,5 +1,5 @@
 
 <form [class]="'search-input'" >
     <label [for]="'search'"><fa-icon [icon]="searchIcon" [class]="'search-icon'"></fa-icon></label>
-    <input [class]="'search-txtF'" [type]="'text'" [name]="'search'" [id]="'search'" [placeholder]="'Search for a country...'">
+    <input [(ngModel)]="searchValue" (input)="handleSearch()"[class]="'search-txtF'" [type]="'text'" [name]="'search'" [id]="'search'" [placeholder]="'Search for a country...'">
 </form>
