@@ -1,10 +1,13 @@
-<div [class]="'grid'">
-    <app-countries-cards *ngFor="let country of countries$ | async" 
-    [flag]="country.flags.svg"
-    [commonName]="country.name.common"
-    [population]="country.population.toLocaleString()"
-    [region]="country.region"
-    [capital]="country.capital ? country.capital.join() : 'No capital'"
-    [cca2]="country.cca2"
-    ></app-countries-cards>
+<div [class]="'country-section'">
+    <app-favourties></app-favourties>
+    <div [class]="'grid'">
+        <app-countries-cards *ngFor="let country of countries$ | async" 
+        [flag]="country.flags.svg"
+        [commonName]="country.name.common"
+        [population]="country.population.toLocaleString()"
+        [region]="country.region"
+        [capital]="country.capital ? country.capital.join() : 'No capital'"
+        [cca2]="country.cca2"
+        ></app-countries-cards>
+    </div>
 </div>

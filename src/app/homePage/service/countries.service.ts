@@ -1,25 +1,59 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { BehaviorSubject, Observable ,switchMap} from 'rxjs';
+import { BehaviorSubject, Observable, switchMap, filter, withLatestFrom, map ,combineLatest} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CountriesService {
 
+  // countries$: Observable<Country[]>;
+
   searchValue = new BehaviorSubject('');
+  filterValue = new BehaviorSubject('FilterBy');
 
   countries$ = this.searchValue.pipe(
     switchMap((searchValue)=>{
       let api = "https://restcountries.com/v3.1/" + (searchValue.trim() ? "name/" + searchValue : "all");
-     return this.httpClient.get<Country[]>(api);
-    })
+      console.log("this is api"+api)
+      return this.httpClient.get<Country[]>(api);
+    }),
+    
   );
 
-  constructor(private httpClient:HttpClient) {
+  // filteredCountries$ = this.filterValue.pipe(
+  //   withLatestFrom(this.countries$),
+  //   map(([filterValue,countries])=>{
+  //     return countries.filter((country) =>{
+  //       if(filterValue !== 'FilterBy'){
+  //         return country.region.includes(filterValue);
+  //       }
+  //       return country.region.includes('');
+  //     })
+  //   })
+  // );
 
+  filteredCountries$ = combineLatest([this.countries$, this.filterValue]).pipe(
+    map(([countries,filterValue])=>{
+          return countries.filter((country) =>{
+            if(filterValue !== 'FilterBy'){
+              return country.region.includes(filterValue);
+            }
+            return country.region.includes('');
+          })
+        })
+  );
+
+
+
+  constructor(private httpClient:HttpClient) {
    }
+
+
+
+
 }
+
 
 export interface Country {
   name: Name

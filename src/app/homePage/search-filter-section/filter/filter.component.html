@@ -1,11 +1,12 @@
-<div [class]="'list'">
-    <button [class]="'select'">Filter by<fa-icon [icon]="angleDownIcon"></fa-icon></button>
+<div [class]="'list'" [ngClass]="showSelectFlag ? 'block-select' : 'none-select'">
+    <button [class]="'select'" (click)="showSelect()">{{filterValueBtn}}<fa-icon [icon]="angleDownIcon"></fa-icon></button>
     <div [class]="'options'">
-        <a [href]="'#'">Africa</a>
-        <a [href]="'#'">America</a>
-        <a [href]="'#'">Asia</a>
-        <a [href]="'#'">Europe</a>
-        <a [href]="'#'">Oceania</a>
-        <a [href]="'#'">Favourties</a>
+        <a (click)="setFilter('FilterBy')">Filter by</a>
+        <a (click)="setFilter('Africa')">Africa</a>
+        <a (click)="setFilter('America')">America</a>
+        <a (click)="setFilter('Asia')">Asia</a>
+        <a (click)="setFilter('Europe')">Europe</a>
+        <a (click)="setFilter('Oceania')">Oceania</a>
+        <a (click)="setFilter('Favourties')">Favourties</a>
     </div>
 </div>

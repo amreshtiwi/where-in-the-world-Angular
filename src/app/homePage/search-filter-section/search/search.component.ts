@@ -10,8 +10,8 @@ import { Component } from '@angular/core';
 export class SearchComponent {
   searchValue:string=this.countriesService.searchValue.value;
   searchIcon=faSearch;
-  constructor(private countriesService:CountriesService){
 
+  constructor(private countriesService:CountriesService){
   }
 
   handleSearch(){
