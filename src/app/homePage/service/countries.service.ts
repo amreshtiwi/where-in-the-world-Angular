@@ -7,10 +7,10 @@ import { BehaviorSubject, Observable, switchMap, filter, withLatestFrom, map ,co
 })
 export class CountriesService {
 
-  // countries$: Observable<Country[]>;
 
   searchValue = new BehaviorSubject('');
   filterValue = new BehaviorSubject('FilterBy');
+  favouritesCountries?: Country[] ;
 
   countries$ = this.searchValue.pipe(
     switchMap((searchValue)=>{
@@ -21,17 +21,6 @@ export class CountriesService {
     
   );
 
-  // filteredCountries$ = this.filterValue.pipe(
-  //   withLatestFrom(this.countries$),
-  //   map(([filterValue,countries])=>{
-  //     return countries.filter((country) =>{
-  //       if(filterValue !== 'FilterBy'){
-  //         return country.region.includes(filterValue);
-  //       }
-  //       return country.region.includes('');
-  //     })
-  //   })
-  // );
 
   filteredCountries$ = combineLatest([this.countries$, this.filterValue]).pipe(
     map(([countries,filterValue])=>{
@@ -44,6 +33,10 @@ export class CountriesService {
         })
   );
 
+
+  addToFavourties(){
+    
+  }
 
 
   constructor(private httpClient:HttpClient) {

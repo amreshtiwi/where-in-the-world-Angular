@@ -1,5 +1,6 @@
 import { Component,Input } from '@angular/core';
 
+
 @Component({
   selector: 'app-countries-cards',
   templateUrl: './countries-cards.component.html',
@@ -12,4 +13,6 @@ export class CountriesCardsComponent {
   @Input() region?:string;
   @Input() capital?:string;
   @Input() cca2?:string;
+
+
 }

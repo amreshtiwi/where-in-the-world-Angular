@@ -5,6 +5,7 @@ import { CountrySectionComponent } from './country-section/country-section.compo
 import { CountriesCardsComponent } from './countries-cards/countries-cards.component';
 import { FavourtiesComponent } from './favourties/favourties.component';
 import { HttpClientModule } from '@angular/common/http';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 
 
@@ -21,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     HttpClientModule,
     RouterModule,
+    DragDropModule
   ]
 })
 export class CountrySectionModule { }
