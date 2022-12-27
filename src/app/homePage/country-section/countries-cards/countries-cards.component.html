@@ -1,5 +1,5 @@
 <!-- <p>{{flag}}</p> -->
-<div  [class]="'card'"  >
+<a [class]="'card'" routerLink="/details/{{cca2}}" >
     <img [src]="flag" [alt]="commonName" [class]="'card-image'">
     <div [class]="'card-info'">
         <h2>{{commonName}}</h2>
@@ -7,6 +7,6 @@
         <div [class]="'info'"><strong [class]="'info-title'">Region:</strong>{{region}}</div>
         <div [class]="'info'"><strong [class]="'info-title'">Capital:</strong> {{capital}}</div>
     </div>
-</div>
+</a>
 <!-- [ngStyle]="opacityStyle" -->
 <!-- routerLink="/details/{{cca2}}" -->

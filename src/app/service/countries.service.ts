@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { BehaviorSubject, Observable, switchMap, filter, withLatestFrom, map ,combineLatest} from 'rxjs';
+import { BehaviorSubject, Observable, Subject,switchMap, filter, withLatestFrom, map ,combineLatest, tap} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +8,23 @@ import { BehaviorSubject, Observable, switchMap, filter, withLatestFrom, map ,co
 export class CountriesService {
 
 
+  modeSet = (localStorage.getItem('darkMode') === null); //false light mode --- ture dark mode 
+  mode = this.modeSet ? 'light' : localStorage.getItem('darkMode');
+  modeFlag = false;
+  modeValue = new BehaviorSubject(this.mode);
+  backgroundStyles : Record<string, string> = {
+    'background' : '#fafafa',
+    'color' : 'black'
+  };
+  elementStyles : Record<string, string> = {
+    'background' : '#ffffff',
+    'color' : 'black'
+  };
+
+
   searchValue = new BehaviorSubject('');
   filterValue = new BehaviorSubject('FilterBy');
+  counrtyCode = new Subject<string>();
   favouritesCountries?: Country[] ;
 
   countries$ = this.searchValue.pipe(
@@ -21,7 +36,7 @@ export class CountriesService {
     
   );
 
-
+  
   filteredCountries$ = combineLatest([this.countries$, this.filterValue]).pipe(
     map(([countries,filterValue])=>{
           return countries.filter((country) =>{
@@ -38,12 +53,43 @@ export class CountriesService {
     
   }
 
+  getDetails(code:string){
+    let api = "https://restcountries.com/v3.1/alpha/"+code;
+    return this.httpClient.get<Country[]>(api);
+  }
+
+
+  modeValue$ = this.modeValue.asObservable().subscribe(mode => {
+    if(mode === 'light'){
+      console.log('light');
+      this.modeFlag = false;
+      this.backgroundStyles = {
+        'background': this.modeFlag ? '#202c37' : '#fafafa',
+        'color': this.modeFlag ? 'white' : 'black'
+      };
+    
+      this.elementStyles = {
+        'background': this.modeFlag ? '#2b3945' : '#ffffff',
+        'color': this.modeFlag ? 'white' : 'black'
+      };
+    }else if(mode === 'dark'){
+      console.log('dark');
+      this.modeFlag=true;
+      this.backgroundStyles = {
+        'background': this.modeFlag ? '#202c37' : '#fafafa',
+        'color': this.modeFlag ? 'white' : 'black'
+      };
+    
+      this.elementStyles = {
+        'background': this.modeFlag ? '#2b3945' : '#ffffff',
+        'color': this.modeFlag ? 'white' : 'black'
+      };
+    }
+  }
+  );
 
   constructor(private httpClient:HttpClient) {
    }
-
-
-
 
 }
 

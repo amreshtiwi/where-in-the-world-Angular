@@ -1,4 +1,4 @@
-import { CountriesService, Country } from './../../service/countries.service';
+import { CountriesService, Country } from '../../../service/countries.service';
 import { Component } from '@angular/core';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 
@@ -13,10 +13,21 @@ export class CountrySectionComponent {
 
   countries$ = this.countriesServies.filteredCountries$;
   favourties: Country[] = [];
+  modeValue = this.countriesServies.modeValue;
+  modeFlag = this.modeValue.value === "light" ? false : true ; //true -> dark   false -> light 
 
   constructor(private countriesServies: CountriesService){
   }
 
+  backgroundStyles: Record<string, string> = {
+    'background': this.modeFlag ? '#202c37' : '#fafafa',
+    'color': this.modeFlag ? 'white' : 'black'
+  };
+
+  elementStyles: Record<string, string> = {
+    'background': this.modeFlag ? '#2b3945' : '#ffffff',
+    'color': this.modeFlag ? 'white' : 'black'
+  };
 
   // dragStart(flag:string,name:string){
   //   console.log(flag,name);

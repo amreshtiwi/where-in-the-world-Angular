@@ -1,6 +1,6 @@
-<header [class]="'header'">
+<header [class]="'header'" [ngStyle]="backgroundStyle">
     <h1 [class]="'title'">Where in the world?</h1>
-    <button [class]="'dark-mode-btn'">
+    <button [class]="'dark-mode-btn'" (click)="modeSetter()">
         <fa-icon [icon]="moonIcon"></fa-icon>
         Dark Mode
     </button>

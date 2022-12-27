@@ -1,4 +1,4 @@
-<div [class]="'list'" [ngClass]="showSelectFlag ? 'block-select' : 'none-select'">
+<div [class]="'list'" [ngClass]="showSelectFlag ? 'block-select' : 'none-select'" [ngStyle]="elementStyles">
     <button [class]="'select'" (click)="showSelect()">{{filterValueBtn}}<fa-icon [icon]="angleDownIcon"></fa-icon></button>
     <div [class]="'options'">
         <a (click)="setFilter('FilterBy')">Filter by</a>

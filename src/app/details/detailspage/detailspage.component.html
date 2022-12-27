@@ -1,1 +1,45 @@
-<p>{{countryCode}}</p>
+<div *ngIf="(detailedCountries$ | async) as countries" class="home-info" [ngStyle]="backgroundStyles">
+
+
+    <button class="back-btn" routerLink="/home" [ngStyle]="elementStyles">
+        <fa-icon [icon]="backIcon"></fa-icon>
+        Back
+    </button>
+
+    <div class="info-section">
+
+        <img src="{{countries[0].flags.svg}}" alt="{{countries[0].cca2}}" class="flag">
+
+        <div class="country-info">
+
+            <h2 class="country-name">{{countries[0].name.common}}</h2>
+            <div class="more-info">
+                <div class="basic-info">
+                    <p class="info"><strong class="info-title">Native Name:</strong>{{ getObjectValues(countries[0].name.nativeName)[0].common }} </p>
+                    <p class="info"><strong class="info-title">Population:</strong>{{countries[0].population.toLocaleString()}}</p>
+                    <p class="info"><strong class="info-title">Region:</strong> {{countries[0].region}}</p>
+                    <p class="info"><strong class="info-title">Sub Region:</strong>{{countries[0].subregion}}</p>
+                    <p class="info"><strong class="info-title">Capital:</strong>{{ countries[0].capital ? countries[0].capital.join() : 'No capital'}}</p>
+                </div>
+
+                <div class="basic-info">
+                    <p class="info"><strong class="info-title">Top Level Domain:</strong> {{countries[0].tld}}</p>
+                    <p class="info"><strong class="info-title">currencies:</strong><span *ngFor="let cur of getObjectValues(countries[0].currencies)">{{cur.name}}, </span></p>
+                    <p class="info"><strong class="info-title">Languages:</strong> {{getObjectValues(countries[0].languages).join(',')}}</p>
+                </div>
+
+                <div class="basic-info basic-info2">
+                    <div class="border-title"><strong class="info-title">Border Countries:</strong></div>
+                    <div  *ngFor="let border of countries[0].borders">
+                        <borderbuttons [code]="border"  class="back-btn border-countries-btn" [ngStyle]="elementStyles"></borderbuttons> 
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- <p *ngIf="(detailedCountries$ | async) as countries" >
+    {{countries[0].name.common}}
+</p> -->
