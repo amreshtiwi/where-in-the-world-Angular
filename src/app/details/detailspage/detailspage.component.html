@@ -1,7 +1,7 @@
-<div *ngIf="(detailedCountries$ | async) as countries" class="home-info" [ngStyle]="backgroundStyles">
+<div *ngIf="(detailedCountries$ | async) as countries" class="home-info" [ngStyle]="(themeValueBackground$ | async)">
 
 
-    <button class="back-btn" routerLink="/home" [ngStyle]="elementStyles">
+    <button class="back-btn" routerLink="/home" [ngStyle]="(themeValueElement$ | async)">
         <fa-icon [icon]="backIcon"></fa-icon>
         Back
     </button>
@@ -31,7 +31,7 @@
                 <div class="basic-info basic-info2">
                     <div class="border-title"><strong class="info-title">Border Countries:</strong></div>
                     <div  *ngFor="let border of countries[0].borders">
-                        <borderbuttons [code]="border"  class="back-btn border-countries-btn" [ngStyle]="elementStyles"></borderbuttons> 
+                        <borderbuttons [code]="border"  class="back-btn border-countries-btn" [ngStyle]="(themeValueElement$ | async)"></borderbuttons> 
                     </div>
                 </div>
             </div>

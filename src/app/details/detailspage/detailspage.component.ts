@@ -17,8 +17,8 @@ import { faArrowLeft, faBackspace, faBackward } from '@fortawesome/free-solid-sv
 export class DetailspageComponent {
   backIcon= faArrowLeft;
   detailedCountries$ ?:Observable<Country[]>;
-  modeValue = this.countriesService.modeValue;
-  modeFlag = this.modeValue.value === "light" ? false : true ; //true -> dark   false -> light 
+  themeValueBackground$ = this.countriesService.themebackground$;
+  themeValueElement$ = this.countriesService.themeElement$;
 
   constructor(route: ActivatedRoute, private countriesService:CountriesService) {
     route.params.subscribe((params) => {
@@ -27,15 +27,7 @@ export class DetailspageComponent {
     });
 }
 
-backgroundStyles: Record<string, string> = {
-  'background': this.modeFlag ? '#202c37' : '#fafafa',
-  'color': this.modeFlag ? 'white' : 'black'
-};
 
-elementStyles: Record<string, string> = {
-  'background': this.modeFlag ? '#2b3945' : '#ffffff',
-  'color': this.modeFlag ? 'white' : 'black'
-};
 
 getObjectValues(object:Object){
   return Object.values(object);

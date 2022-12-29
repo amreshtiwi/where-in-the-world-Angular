@@ -1,1 +1,1 @@
-<button routerLink="/details/{{code}}" *ngIf="( countryInfo$| async) as country_info" class="back-btn border-countries-btn">{{country_info[0].name.common}}</button>
+<button routerLink="/details/{{code}}" *ngIf="( countryInfo$| async) as country_info" class="back-btn border-countries-btn" [ngStyle]="(themeValueElement$ | async)">{{country_info[0].name.common}}</button>

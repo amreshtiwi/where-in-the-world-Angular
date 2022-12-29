@@ -1,13 +1,12 @@
-<div [class]="'country-section'" [ngStyle]="backgroundStyles">
+<div [class]="'country-section'">
     <app-favourties
-    [ngStyle]="elementStyles" 
     cdkDropList
      (cdkDropListDropped)="drop($event)"
      #favourtiesList="cdkDropList"
 
      ></app-favourties>
-    <div [class]="'grid'" *ngIf="(countries$ | async) as countries" cdkDropList [cdkDropListConnectedTo]="[favourtiesList]" [ngStyle]="elementStyles">
-        <app-countries-cards [class]="'app-countries-cards'" *ngFor="let country of countries; trackBy: ContryTraceBy" 
+    <div [class]="'grid'" *ngIf="(countries$ | async) ; else noData" cdkDropList [cdkDropListConnectedTo]="[favourtiesList]">
+        <app-countries-cards [class]="'app-countries-cards'" *ngFor="let country of countries$ | async; trackBy: ContryTraceBy" 
         [flag]="country.flags.svg"
         [commonName]="country.name.common"
         [population]="country.population.toLocaleString()"
@@ -17,4 +16,6 @@
         cdkDrag
         ></app-countries-cards>
     </div>
+    <ng-template #noData> <div [ngStyle]="(themeValueElement$ | async)">Not Found</div> </ng-template>
+    
 </div>

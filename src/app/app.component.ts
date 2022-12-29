@@ -1,3 +1,4 @@
+import { CountriesService } from './service/countries.service';
 import { Component } from '@angular/core';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 
@@ -8,4 +9,7 @@ import { faCoffee } from '@fortawesome/free-solid-svg-icons';
 })
 export class AppComponent {
   title = 'what-in-the-world-angular';
+  themeValueBackground$ = this.countriesService.themebackground$;
+  constructor(private countriesService:CountriesService){
+  }
 }

@@ -1,3 +1,4 @@
+import { CountriesService } from './../../../service/countries.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class FavourtiesComponent {
 
+  themeValueBackground$ = this.countriesService.themebackground$;
+  themeValueElement$ = this.countriesService.themeElement$;
+  constructor(private countriesService:CountriesService){
+  }
 }

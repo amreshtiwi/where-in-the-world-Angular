@@ -1,5 +1,5 @@
 
-<form [class]="'search-input'" [ngStyle]="elementStyles">
-    <label [for]="'search'"><fa-icon [icon]="searchIcon" [class]="'search-icon'"></fa-icon></label>
-    <input [(ngModel)]="searchValue" (input)="handleSearch()"[class]="'search-txtF'" [type]="'text'" [name]="'search'" [id]="'search'" [placeholder]="'Search for a country...'">
+<form [class]="'search-input'" [ngStyle]="(themeValueElement$ | async)">
+    <label [for]="'search'"><fa-icon [icon]="searchIcon" [class]="'search-icon'" [ngStyle]="(themeValueElement$ | async)"></fa-icon></label>
+    <input [ngStyle]="(themeValueElement$ | async)" [(ngModel)]="searchValue" (input)="handleSearch()"[class]="'search-txtF'" [type]="'text'" [name]="'search'" [id]="'search'" [placeholder]="'Search for a country...'">
 </form>

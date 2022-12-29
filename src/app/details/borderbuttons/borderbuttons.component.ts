@@ -11,6 +11,8 @@ export class BorderbuttonsComponent implements OnInit{
   countryInfo$ ?: Observable<Country[]>
   @Input() code:string = "";
   
+  themeValueBackground$ = this.countriesService.themebackground$;
+  themeValueElement$ = this.countriesService.themeElement$;
   constructor(private countriesService:CountriesService) {
   }
 

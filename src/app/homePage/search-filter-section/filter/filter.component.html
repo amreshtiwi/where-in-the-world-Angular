@@ -1,12 +1,24 @@
-<div [class]="'list'" [ngClass]="showSelectFlag ? 'block-select' : 'none-select'" [ngStyle]="elementStyles">
-    <button [class]="'select'" (click)="showSelect()">{{filterValueBtn}}<fa-icon [icon]="angleDownIcon"></fa-icon></button>
-    <div [class]="'options'">
-        <a (click)="setFilter('FilterBy')">Filter by</a>
-        <a (click)="setFilter('Africa')">Africa</a>
-        <a (click)="setFilter('America')">America</a>
-        <a (click)="setFilter('Asia')">Asia</a>
-        <a (click)="setFilter('Europe')">Europe</a>
-        <a (click)="setFilter('Oceania')">Oceania</a>
-        <a (click)="setFilter('Favourties')">Favourties</a>
+<div [class]="'list'" [ngClass]="showSelectFlag ? 'block-select' : 'none-select'" [ngStyle]="(themeValueElement$ | async)">
+    <button [class]="'select'" (click)="showSelect()" [ngStyle]="(themeValueElement$ | async)">{{filterValueBtn}} <fa-icon [icon]="angleDownIcon"></fa-icon></button>
+    <div [class]="'options'" [ngStyle]="(themeValueElement$ | async)">
+        <a (click)="setFilter('FilterBy')" [ngStyle]="(themeValueElement$ | async)">Filter by</a>
+        <a (click)="setFilter('Africa')" [ngStyle]="(themeValueElement$ | async)">Africa</a>
+        <a (click)="setFilter('America')" [ngStyle]="(themeValueElement$ | async)">America</a>
+        <a (click)="setFilter('Asia')" [ngStyle]="(themeValueElement$ | async)">Asia</a>
+        <a (click)="setFilter('Europe')" [ngStyle]="(themeValueElement$ | async)">Europe</a>
+        <a (click)="setFilter('Oceania')" [ngStyle]="(themeValueElement$ | async)">Oceania</a>
+        <a (click)="setFilter('Favourties')" [ngStyle]="(themeValueElement$ | async)">Favourties</a>
     </div>
 </div>
+
+<!-- <mat-form-field   [ngStyle]="(themeValueElement$ | async)">
+    <mat-select [placeholder]="selected"  [ngStyle]="(themeValueElement$ | async)">
+      <mat-option  value="FilterBy" (click)="setFilter('FilterBy')">Filter By</mat-option>
+      <mat-option  value="Africa" (click)="setFilter('Africa')">Africa</mat-option>
+      <mat-option  value="America" (click)="setFilter('America')">America</mat-option>
+      <mat-option  value="Asia" (click)="setFilter('Asia')">Asia</mat-option>
+      <mat-option  value="Europe" (click)="setFilter('Europe')">Europe</mat-option>
+      <mat-option  value="Oceania" (click)="setFilter('Oceania')">Oceania</mat-option>
+      <mat-option  value="Favourties" (click)="setFilter('Favourties')">Favourties</mat-option>
+    </mat-select>
+  </mat-form-field> -->

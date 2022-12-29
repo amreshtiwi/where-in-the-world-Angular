@@ -1,6 +1,12 @@
 import { CountriesService } from '../../../service/countries.service';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { Component } from '@angular/core';
+import {FormControl, FormGroupDirective, NgForm, Validators} from '@angular/forms';
+
+interface Food {
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-filter',
@@ -10,23 +16,19 @@ import { Component } from '@angular/core';
 export class FilterComponent {
   angleDownIcon=faAngleDown;
   showSelectFlag:boolean = false;
+  selectedValue?: string;
+  foods: Food[] = [
+    {value: 'steak-0', viewValue: 'Steak'},
+    {value: 'pizza-1', viewValue: 'Pizza'},
+    {value: 'tacos-2', viewValue: 'Tacos'},
+  ];
   filterValue:string = this.countriesService.filterValue.value;
   filterValueBtn:string='Filter By';
-  modeValue = this.countriesService.modeValue;
-  modeFlag = this.modeValue.value === "light" ? false : true ; //true -> dark   false -> light 
+  themeValueBackground$ = this.countriesService.themebackground$;
+  themeValueElement$ = this.countriesService.themeElement$;
 
   constructor(private countriesService:CountriesService){
   }
-
-  backgroundStyles: Record<string, string> = {
-    'background': this.modeFlag ? '#202c37' : '#fafafa',
-    'color': this.modeFlag ? 'white' : 'black'
-  };
-
-  elementStyles: Record<string, string> = {
-    'background': this.modeFlag ? '#2b3945' : '#ffffff',
-    'color': this.modeFlag ? 'white' : 'black'
-  };
 
   setFilter(filterValue:string){
     this.countriesService.filterValue.next(filterValue);
@@ -38,4 +40,15 @@ export class FilterComponent {
   showSelect(){
     this.showSelectFlag = !this.showSelectFlag;
   }
+
+  filters: string[] = [
+    'FilterBy',
+    'Africa',
+    'America',
+    'Asia',
+    'Europe',
+    'Oceania',
+    'Favourties'
+  ];
+  selected = 'Filter By'; 
 }

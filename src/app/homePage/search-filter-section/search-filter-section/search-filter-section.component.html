@@ -1,4 +1,4 @@
-<div [class]="'search-section'" [ngStyle]="backgroundStyles">
+<div [class]="'search-section'" [ngStyle]="(themeValueBackground$ | async)">
     <app-search></app-search>
     <app-filter></app-filter>
 </div>

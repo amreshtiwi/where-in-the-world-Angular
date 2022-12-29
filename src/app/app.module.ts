@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { LayoutModule } from './layout/layout.module';
 import { DetailspageModule } from './details/detailspage.module';
 import { HomepageModule } from './homePage/homepage.module';
@@ -17,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     HomepageModule,

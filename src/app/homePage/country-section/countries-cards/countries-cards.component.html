@@ -1,5 +1,5 @@
 <!-- <p>{{flag}}</p> -->
-<a [class]="'card'" routerLink="/details/{{cca2}}" >
+<a [class]="'card'" routerLink="/details/{{cca2}}" [ngStyle]="(themeValueElement$ | async)">
     <img [src]="flag" [alt]="commonName" [class]="'card-image'">
     <div [class]="'card-info'">
         <h2>{{commonName}}</h2>

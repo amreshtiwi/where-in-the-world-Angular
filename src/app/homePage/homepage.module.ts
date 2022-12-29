@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CountrySectionModule } from './country-section/country-section.module';
 import { SearchFilterSectionModule } from './search-filter-section/search-filter-section.module';
@@ -18,7 +19,9 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     SearchFilterSectionModule,
     CountrySectionModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
   ]
 })
 export class HomepageModule { }

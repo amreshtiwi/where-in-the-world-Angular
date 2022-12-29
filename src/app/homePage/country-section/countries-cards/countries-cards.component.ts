@@ -1,3 +1,4 @@
+import { CountriesService } from './../../../service/countries.service';
 import { Component,Input } from '@angular/core';
 
 
@@ -14,5 +15,9 @@ export class CountriesCardsComponent {
   @Input() capital?:string;
   @Input() cca2?:string;
 
+  themeValueBackground$ = this.countriesService.themebackground$;
+  themeValueElement$ = this.countriesService.themeElement$;
+  constructor(private countriesService:CountriesService){
+  }
 
 }

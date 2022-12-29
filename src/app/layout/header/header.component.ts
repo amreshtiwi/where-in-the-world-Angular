@@ -9,9 +9,9 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
   moonIcon = faMoon;
-  modeValue = this.countriesService.modeValue;
-  backgroundStyle = this.countriesService.backgroundStyles;
-  // modeFlag = this.modeValue.value === "light" ? false : true ; //true -> dark   false -> light 
+  themeValueBackground$ = this.countriesService.themebackground$;
+  themeValueElement$ = this.countriesService.themeElement$;
+
 
   constructor(private countriesService:CountriesService){
   }
@@ -19,12 +19,12 @@ export class HeaderComponent {
 
 
   modeSetter(){
-    if(this.modeValue.value === 'light'){
+    if(this.countriesService.themeValue.value === 'light'){
+      this.countriesService.setTheme('dark');
       localStorage.setItem('darkMode', 'dark');
-      this.countriesService.modeValue.next('dark');
-    }else{
+    }else if(this.countriesService.themeValue.value === 'dark'){
+      this.countriesService.setTheme('light');
       localStorage.setItem('darkMode', 'light');
-      this.countriesService.modeValue.next('light');
     }
   }
 }

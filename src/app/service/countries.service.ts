@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { BehaviorSubject, Observable, Subject,switchMap, filter, withLatestFrom, map ,combineLatest, tap} from 'rxjs';
+import { BehaviorSubject, Observable, Subject,switchMap, filter, withLatestFrom, map ,combineLatest, tap, of, catchError, throwError} from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,16 +11,17 @@ export class CountriesService {
 
   modeSet = (localStorage.getItem('darkMode') === null); //false light mode --- ture dark mode 
   mode = this.modeSet ? 'light' : localStorage.getItem('darkMode');
-  modeFlag = false;
-  modeValue = new BehaviorSubject(this.mode);
-  backgroundStyles : Record<string, string> = {
-    'background' : '#fafafa',
-    'color' : 'black'
-  };
-  elementStyles : Record<string, string> = {
-    'background' : '#ffffff',
-    'color' : 'black'
-  };
+  themeValue = new BehaviorSubject(this.mode);
+  // modeFlag = false;
+  // modeValue = new BehaviorSubject(this.mode);
+  // backgroundStyles : Record<string, string> = {
+  //   'background' : '#fafafa',
+  //   'color' : 'black'
+  // };
+  // elementStyles : Record<string, string> = {
+  //   'background' : '#ffffff',
+  //   'color' : 'black'
+  // };
 
 
   searchValue = new BehaviorSubject('');
@@ -31,7 +33,12 @@ export class CountriesService {
     switchMap((searchValue)=>{
       let api = "https://restcountries.com/v3.1/" + (searchValue.trim() ? "name/" + searchValue : "all");
       console.log("this is api"+api)
-      return this.httpClient.get<Country[]>(api);
+      return this.httpClient.get<Country[]>(api).pipe(
+        catchError(err =>{
+          // console.log(err);
+          return [];
+        })
+      );
     }),
     
   );
@@ -45,9 +52,55 @@ export class CountriesService {
             }
             return country.region.includes('');
           })
-        })
+        }),
   );
 
+  themebackground$ = this.themeValue.pipe(
+    switchMap((theme) => {
+      if(theme === 'light'){
+        return of(
+          {
+            'background': '#fafafa',
+            'color': 'black'
+          }
+        );
+      }else{
+        return of(
+          {
+            'background': '#202c37',
+            'color': 'white'
+          }
+        );
+      }
+    }),
+  );
+
+  themeElement$ = this.themeValue.pipe(
+    tap((theme)=>{
+      if(theme === 'light'){
+        document.body.style.backgroundColor = "#fafafa";
+      }else{
+        document.body.style.backgroundColor = "#202c37";
+      }
+    }),
+    switchMap((theme) => {
+      if(theme === 'light'){
+        return of(
+          {
+            'background': '#ffffff',
+            'color': 'black'
+          }
+        );
+      }else{
+        return of(
+          {
+            'background': '#2b3945',
+            'color': 'white'
+          }
+        );
+      }
+    }),
+  );
 
   addToFavourties(){
     
@@ -59,34 +112,9 @@ export class CountriesService {
   }
 
 
-  modeValue$ = this.modeValue.asObservable().subscribe(mode => {
-    if(mode === 'light'){
-      console.log('light');
-      this.modeFlag = false;
-      this.backgroundStyles = {
-        'background': this.modeFlag ? '#202c37' : '#fafafa',
-        'color': this.modeFlag ? 'white' : 'black'
-      };
-    
-      this.elementStyles = {
-        'background': this.modeFlag ? '#2b3945' : '#ffffff',
-        'color': this.modeFlag ? 'white' : 'black'
-      };
-    }else if(mode === 'dark'){
-      console.log('dark');
-      this.modeFlag=true;
-      this.backgroundStyles = {
-        'background': this.modeFlag ? '#202c37' : '#fafafa',
-        'color': this.modeFlag ? 'white' : 'black'
-      };
-    
-      this.elementStyles = {
-        'background': this.modeFlag ? '#2b3945' : '#ffffff',
-        'color': this.modeFlag ? 'white' : 'black'
-      };
-    }
+  setTheme(theme:string){
+    this.themeValue.next(theme);
   }
-  );
 
   constructor(private httpClient:HttpClient) {
    }

@@ -5,6 +5,7 @@ import { SearchFilterSectionComponent } from './search-filter-section/search-fil
 import { SearchComponent } from './search/search.component';
 import { FilterComponent } from './filter/filter.component';
 import { FormsModule } from '@angular/forms';
+import {MatSelectModule} from '@angular/material/select';
 
 
 
@@ -20,7 +21,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    MatSelectModule
   ]
 })
 export class SearchFilterSectionModule { }
