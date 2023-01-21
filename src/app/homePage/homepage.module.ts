@@ -1,3 +1,4 @@
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CountrySectionModule } from './country-section/country-section.module';
@@ -22,6 +23,7 @@ import { CommonModule } from '@angular/common';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
+    FontAwesomeModule,
   ]
 })
 export class HomepageModule { }

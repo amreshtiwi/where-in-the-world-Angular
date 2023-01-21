@@ -1,3 +1,4 @@
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -22,7 +23,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     CommonModule,
     HttpClientModule,
     RouterModule,
-    DragDropModule
+    DragDropModule,
+    FontAwesomeModule
   ]
 })
 export class CountrySectionModule { }

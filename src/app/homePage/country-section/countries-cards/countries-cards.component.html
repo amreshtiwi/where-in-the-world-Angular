@@ -7,6 +7,7 @@
         <div [class]="'info'"><strong [class]="'info-title'">Region:</strong>{{region}}</div>
         <div [class]="'info'"><strong [class]="'info-title'">Capital:</strong> {{capital}}</div>
     </div>
+    <fa-icon [icon]="star" [class]="'fav-icon'" [ngStyle]="starColor" (click)="addtoFav(cca2)"></fa-icon>
 </a>
 <!-- [ngStyle]="opacityStyle" -->
 <!-- routerLink="/details/{{cca2}}" -->
